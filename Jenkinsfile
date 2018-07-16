@@ -3,6 +3,14 @@ pipeline {
     label 'jdk8'
   }
   stages {
+    stage('Deploy') {
+      input {
+        message 'Should we continue?'
+      }
+      steps {
+        echo 'Continuing with deployment'
+      }
+    }
     stage('Say Hello') {
       steps {
         echo "Hello ${params.Name}!"
@@ -14,7 +22,8 @@ pipeline {
   }
   environment {
     MY_NAME = 'Mathew'
-    TEST_USR = ''
+    TEST_USER_USR = 'test'
+    TEST_USER_PSW = 'test'
   }
   parameters {
     string(name: 'Name', defaultValue: 'whoever you are', description: 'Who should I say hi to?')
